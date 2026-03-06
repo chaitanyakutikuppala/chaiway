@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>chaiway- the best way</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 /* ═══ TOKENS ═══════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -1111,7 +1112,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
       <div class="upload-submit-row">
         <button class="btn-publish" id="btn-publish" onclick="doUpload()">Publish Resource →</button>
         <button class="btn-draft" onclick="saveDraftDoc()">💾 Save Draft</button>
-        <p class="upload-note">Stored in your browser · Max 20 MB</p>
+        <p class="upload-note" id="upload-storage-note">Cloud sync optional · Max 50 MB</p>
       </div>
     </div>
     <div class="upload-success" id="upload-success">
@@ -1175,6 +1176,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
         </div>
         <button class="btn-save-profile" onclick="saveProfileChanges()">Save Changes</button>
         <button class="btn-save-profile" style="background:#c0392b;margin-left:.7rem" onclick="confirmClearData()">🗑 Clear All My Data</button>
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+          <h3 style="margin-bottom:.8rem">Supabase Cloud Storage</h3>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:.8rem">Connect your Supabase project to store files in the cloud (instead of local device storage). Use only your public project URL and anon key.</p>
+          <div class="field-grid" style="margin-bottom:.4rem">
+            <div class="field field-full"><label>Supabase Project URL</label><input type="text" id="sb-url" placeholder="https://YOUR-PROJECT.supabase.co"/></div>
+            <div class="field field-full"><label>Supabase Anon Key</label><input type="password" id="sb-anon" placeholder="Paste anon public key"/></div>
+          </div>
+          <button class="btn-save-profile" onclick="saveSupabaseConfig()">Save Supabase Config</button>
+          <button class="btn-save-profile" style="background:#7f8c8d;margin-left:.7rem" onclick="clearSupabaseConfig()">Disconnect</button>
+          <p id="sb-status" style="font-size:.8rem;color:var(--muted);margin-top:.6rem"></p>
+        </div>
         <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
           <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">Want to take a break? You can log out anytime.</p>
           <button onclick="signOut()" style="padding:.75rem 2rem;background:var(--ink);color:var(--bg);border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--ink)'">🚪 Log Out</button>
@@ -1581,6 +1593,7 @@ async function hashPw(p){
   return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+const MAX_UPLOAD_MB=50;
 const ls={
   get:k=>{try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}},
   set:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
@@ -1615,11 +1628,129 @@ const clearDraft=()=>ls.del('sn3_draft');
 const getSearchHistory=()=>ls.get('sn3_searches')||[];
 const addSearchHistory=q=>{if(!q.trim())return;let h=getSearchHistory().filter(x=>x!==q.trim());h.unshift(q.trim());ls.set('sn3_searches',h.slice(0,8));};
 
+// ── SUPABASE CLOUD (optional) ────────────────────────────
+const SB_CFG_KEY='sn3_supabase_cfg';
+const SB_BUCKET='chaiway-files';
+let supabaseClient=null;
+let supabaseEnabled=false;
+
+function getSupabaseCfg(){
+  return ls.get(SB_CFG_KEY)||{url:'',anonKey:''};
+}
+function setSupabaseCfg(cfg){
+  ls.set(SB_CFG_KEY,{url:(cfg.url||'').trim(),anonKey:(cfg.anonKey||'').trim()});
+}
+function clearSupabaseCfg(){
+  ls.del(SB_CFG_KEY);
+}
+window.clearSupabaseConfig=()=>{
+  clearSupabaseCfg();
+  supabaseClient=null;
+  supabaseEnabled=false;
+  const note=document.getElementById('upload-storage-note');
+  if(note)note.textContent=`Cloud sync optional · Max ${MAX_UPLOAD_MB} MB`;
+  const st=document.getElementById('sb-status');
+  if(st)st.textContent='Disconnected from Supabase.';
+  showToast('Supabase disconnected. Files will be stored locally.','info');
+};
+function initSupabase(){
+  const cfg=getSupabaseCfg();
+  if(!cfg.url||!cfg.anonKey||!window.supabase)return false;
+  try{
+    supabaseClient=window.supabase.createClient(cfg.url,cfg.anonKey,{auth:{persistSession:false}});
+    supabaseEnabled=true;
+    return true;
+  }catch(e){
+    supabaseEnabled=false;
+    supabaseClient=null;
+    return false;
+  }
+}
+window.saveSupabaseConfig=async()=>{
+  const url=(document.getElementById('sb-url')?.value||'').trim();
+  const anonKey=(document.getElementById('sb-anon')?.value||'').trim();
+  if(!url||!anonKey){showToast('Enter both Supabase URL and anon key.','error');return;}
+  setSupabaseCfg({url,anonKey});
+  const ok=initSupabase();
+  const st=document.getElementById('sb-status');
+  if(!ok){
+    if(st)st.textContent='Could not initialize Supabase. Check your URL/key.';
+    showToast('Supabase connection failed.','error');
+    return;
+  }
+  if(st)st.textContent='Connected. New files will upload to Supabase cloud storage.';
+  const note=document.getElementById('upload-storage-note');
+  if(note)note.textContent=`Supabase cloud storage connected · Max ${MAX_UPLOAD_MB} MB`;
+  await syncDocsFromSupabase();
+  showToast('Supabase connected successfully.','success');
+};
+
+function normalizeDocFromSupabase(row){
+  return {
+    id:row.id,
+    title:row.title,
+    subject:row.subject,
+    type:row.type,
+    board:row.board||'',
+    year:row.year||'',
+    grade:row.grade||'',
+    description:row.description||'',
+    tags:Array.isArray(row.tags)?row.tags:[],
+    fileKey:row.file_key,
+    fileExt:row.file_ext||'',
+    thumbnail:row.thumbnail||null,
+    uploader_id:row.uploader_id,
+    uploader_name:row.uploader_name||'Anonymous',
+    downloads:row.downloads||0,
+    likes:row.likes||0,
+    views:row.views||0,
+    avgRating:row.avg_rating||0,
+    ratingCount:row.rating_count||0,
+    ratingSum:row.rating_sum||0,
+    status:row.status||'approved',
+    createdAt:row.created_at||new Date().toISOString()
+  };
+}
+async function syncDocsFromSupabase(){
+  if(!supabaseEnabled||!supabaseClient)return;
+  const {data,error}=await supabaseClient.from('documents').select('*').order('created_at',{ascending:false}).limit(2000);
+  if(error)throw error;
+  saveDocs((data||[]).map(normalizeDocFromSupabase));
+  browseInited=false;
+  updateFilterCounts();
+}
+async function deleteDocRecord(docId){
+  if(!supabaseEnabled||!supabaseClient)return;
+  const {error}=await supabaseClient.from('documents').delete().eq('id',docId);
+  if(error)throw error;
+}
+
 // ── INDEXEDDB ─────────────────────────────────────────────
 const openDB=()=>new Promise((res,rej)=>{const r=indexedDB.open('sn3_files',1);r.onupgradeneeded=e=>e.target.result.createObjectStore('files');r.onsuccess=e=>res(e.target.result);r.onerror=e=>rej(e.target.error);});
-const storeFile=async(key,blob)=>{const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').put(blob,key);tx.oncomplete=()=>res();tx.onerror=e=>rej(e.target.error);});};
-const getFile=async key=>{const db=await openDB();return new Promise((res,rej)=>{const r=db.transaction('files','readonly').objectStore('files').get(key);r.onsuccess=()=>res(r.result||null);r.onerror=e=>rej(e.target.error);});};
-const deleteFile=async key=>{const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').delete(key);tx.oncomplete=()=>res();tx.onerror=e=>rej(e.target.error);});};
+const storeFile=async(key,blob)=>{
+  if(supabaseEnabled&&supabaseClient){
+    const {error}=await supabaseClient.storage.from(SB_BUCKET).upload(key,blob,{upsert:false,cacheControl:'3600'});
+    if(error)throw error;
+    return;
+  }
+  const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').put(blob,key);tx.oncomplete=()=>res();tx.onerror=e=>rej(e.target.error);});
+};
+const getFile=async key=>{
+  if(supabaseEnabled&&supabaseClient){
+    const {data,error}=await supabaseClient.storage.from(SB_BUCKET).download(key);
+    if(error)throw error;
+    return data||null;
+  }
+  const db=await openDB();return new Promise((res,rej)=>{const r=db.transaction('files','readonly').objectStore('files').get(key);r.onsuccess=()=>res(r.result||null);r.onerror=e=>rej(e.target.error);});
+};
+const deleteFile=async key=>{
+  if(supabaseEnabled&&supabaseClient){
+    const {error}=await supabaseClient.storage.from(SB_BUCKET).remove([key]);
+    if(error)throw error;
+    return;
+  }
+  const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').delete(key);tx.oncomplete=()=>res();tx.onerror=e=>rej(e.target.error);});
+};
 
 // ── TOAST ─────────────────────────────────────────────────
 function showToast(msg,type='info'){
@@ -1671,6 +1802,10 @@ const isAdmin = () => currentUser && ADMIN_EMAILS.includes(currentUser.email.toL
 
 // Restore session
 const _sess=getSession();if(_sess)currentUser=_sess;
+initSupabase();
+if(supabaseEnabled){
+  syncDocsFromSupabase().catch(()=>showToast('Could not sync from Supabase right now.','info'));
+}
 updateNavForAuth();
 
 function updateNavForAuth(){
@@ -2114,6 +2249,7 @@ window.deleteActiveDoc=async()=>{
   if(activeDoc.uploader_id!==currentUser.userId&&!isAdmin()){showToast('You can only delete your own documents.','error');return;}
   if(!confirm(`Delete "${activeDoc.title}"? This cannot be undone.`))return;
   const docs=getDocs().filter(d=>d.id!==activeDoc.id);saveDocs(docs);
+  try{await deleteDocRecord(activeDoc.id);}catch(e){}
   if(activeDoc.fileKey){try{await deleteFile(activeDoc.fileKey);}catch(e){}}
   closeModalBtn();browseInited=false;fetchAndRender();updateFilterCounts();
   showToast('Document deleted.','info');
@@ -2227,7 +2363,7 @@ window.handleFile=file=>{
   const ALLOWED=['pdf','doc','docx','ppt','pptx','png','jpg','jpeg','gif','webp'];
   const ext=file.name.split('.').pop().toLowerCase();
   if(!ALLOWED.includes(ext)){showUploadMsg('error','File type not allowed.');return;}
-  if(file.size>20*1024*1024){showUploadMsg('error','Max file size is 20 MB.');return;}
+  if(file.size>MAX_UPLOAD_MB*1024*1024){showUploadMsg('error',`Max file size is ${MAX_UPLOAD_MB} MB.`);return;}
   const icons={pdf:'📄',doc:'📝',docx:'📝',ppt:'📊',pptx:'📊',png:'🖼️',jpg:'🖼️',jpeg:'🖼️',gif:'🖼️',webp:'🖼️'};
   document.getElementById('fpr-icon').textContent=icons[ext]||'📁';
   document.getElementById('fpr-name').textContent=file.name;
@@ -2269,12 +2405,22 @@ window.doUpload=async()=>{
   if(!type){showUploadMsg('error','Please select a document type.');return;}
   const btn=document.getElementById('btn-publish');btn.disabled=true;btn.textContent='Uploading…';setUploadStep(3);
   const fill=document.getElementById('fpr-fill');let prog=0;const tick=setInterval(()=>{prog=Math.min(prog+Math.random()*15,88);fill.style.width=prog+'%';},150);
-  const ext=file.name.split('.').pop().toLowerCase(),fileKey='file_'+uid();
+  const ext=file.name.split('.').pop().toLowerCase();
+  const fileKey=(supabaseEnabled&&currentUser)?`${currentUser.userId}/${uid()}.${ext}`:'file_'+uid();
   try{
     await storeFile(fileKey,file);clearInterval(tick);fill.style.width='100%';
     let thumbnail=null;if(IMAGE_EXTS.includes(ext))thumbnail=await genThumb(file);
     const docs=getDocs();
-    docs.push({id:uid(),title,subject,type,board,year,grade,description:desc,tags:[...uploadTags],fileKey,fileExt:ext,thumbnail,uploader_id:currentUser.userId,uploader_name:currentUser.name||'Anonymous',downloads:0,likes:0,views:0,avgRating:0,ratingCount:0,ratingSum:0,status:'approved',createdAt:new Date().toISOString()});
+    const newDoc={id:uid(),title,subject,type,board,year,grade,description:desc,tags:[...uploadTags],fileKey,fileExt:ext,thumbnail,uploader_id:currentUser.userId,uploader_name:currentUser.name||'Anonymous',downloads:0,likes:0,views:0,avgRating:0,ratingCount:0,ratingSum:0,status:'approved',createdAt:new Date().toISOString()};
+    if(supabaseEnabled&&supabaseClient){
+      const {error}=await supabaseClient.from('documents').insert({
+        id:newDoc.id,title:newDoc.title,subject:newDoc.subject,type:newDoc.type,board:newDoc.board,year:newDoc.year,grade:newDoc.grade,description:newDoc.description,
+        tags:newDoc.tags,file_key:newDoc.fileKey,file_ext:newDoc.fileExt,thumbnail:newDoc.thumbnail,uploader_id:newDoc.uploader_id,uploader_name:newDoc.uploader_name,
+        downloads:0,likes:0,views:0,avg_rating:0,rating_count:0,rating_sum:0,status:'approved',created_at:newDoc.createdAt
+      });
+      if(error)throw error;
+    }
+    docs.push(newDoc);
     saveDocs(docs);browseInited=false;updateFilterCounts();clearDraft();
     document.getElementById('upload-form-inner').style.display='none';
     document.getElementById('upload-success').style.display='block';
@@ -2318,6 +2464,14 @@ function launchConfetti(){
 // ── PROFILE ───────────────────────────────────────────────
 function renderProfilePage(){
   if(!currentUser)return;
+  const sbCfg=getSupabaseCfg();
+  const sbUrlEl=document.getElementById('sb-url');
+  const sbAnonEl=document.getElementById('sb-anon');
+  const sbStatus=document.getElementById('sb-status');
+  if(sbUrlEl)sbUrlEl.value=sbCfg.url||'';
+  if(sbAnonEl)sbAnonEl.value=sbCfg.anonKey||'';
+  if(sbStatus)sbStatus.textContent=supabaseEnabled?'Connected to Supabase cloud storage.':'Not connected. Files will be stored locally.';
+
   const docs=getDocs(),myDocs=docs.filter(d=>d.uploader_id===currentUser.userId);
   const savedIds=getSaved(currentUser.userId),savedDocs=docs.filter(d=>savedIds.includes(d.id));
   const studiedIds=getStudied(currentUser.userId),studiedDocs=docs.filter(d=>studiedIds.includes(d.id));
@@ -2437,6 +2591,7 @@ window.deleteDocFromProfile=async id=>{
   if(!confirm('Delete this document?'))return;
   const doc=getDocs().find(d=>d.id===id);if(!doc)return;
   const docs=getDocs().filter(d=>d.id!==id);saveDocs(docs);
+  try{await deleteDocRecord(id);}catch(e){}
   if(doc.fileKey){try{await deleteFile(doc.fileKey);}catch(e){}}
   browseInited=false;renderProfilePage();showToast('Document deleted.','info');
 };
@@ -2461,7 +2616,7 @@ window.confirmClearData=()=>{
   if(!confirm('Are you absolutely sure?'))return;
   // Delete user files
   const myDocs=getDocs().filter(d=>d.uploader_id===currentUser.userId);
-  myDocs.forEach(async d=>{if(d.fileKey)try{await deleteFile(d.fileKey);}catch(e){}});
+  myDocs.forEach(async d=>{if(d.fileKey)try{await deleteFile(d.fileKey);}catch(e){};try{await deleteDocRecord(d.id);}catch(e){}});
   const docs=getDocs().filter(d=>d.uploader_id!==currentUser.userId);saveDocs(docs);
   const users=getUsers().filter(u=>u.id!==currentUser.userId);saveUsers(users);
   clearSession();currentUser=null;updateNavForAuth();nav('home');showToast('All data cleared.','info');
@@ -2660,6 +2815,7 @@ window.adminDelete=async id=>{
   if(!isAdmin()||!confirm('Delete this document?'))return;
   const doc=getDocs().find(d=>d.id===id);if(!doc)return;
   saveDocs(getDocs().filter(d=>d.id!==id));
+  try{await deleteDocRecord(id);}catch(e){}
   if(doc.fileKey){try{await deleteFile(doc.fileKey);}catch(e){}}
   renderAdmin();showToast('Deleted.','info');
 };
@@ -2667,8 +2823,8 @@ window.adminDelete=async id=>{
 // ── INFO MODAL ────────────────────────────────────────────
 const INFO={
   terms:`<b>Terms of Use</b><br/><br/>By using Chaiway you agree to:<br/>• Only upload content you own or have rights to share<br/>• Not upload harmful, offensive, or plagiarised material<br/>• Use downloaded resources for personal study only<br/>• Respect other students and contributors<br/><br/>Chaiway reserves the right to remove content that violates these terms.`,
-  privacy:`<b>Privacy Policy</b><br/><br/>Chaiway stores all data locally in your browser (localStorage and IndexedDB). No data is sent to any external server. Passwords are hashed with SHA-256 before storage. You can delete all your data from Profile → Settings → Clear All My Data.<br/><br/>We use no cookies, analytics, or third-party tracking.`,
-  faq:`<b>FAQ</b><br/><br/><b>Is Chaiway free?</b><br/>Yes, 100% free forever.<br/><br/><b>Where is my data?</b><br/>Stored locally in your browser. Clearing browser data will remove your files.<br/><br/><b>What file types are supported?</b><br/>PDF, DOC, DOCX, PPT, PPTX, PNG, JPG, GIF, WEBP — max 20 MB each.<br/><br/><b>Can I delete my uploads?</b><br/>Yes — open any doc and click 🗑 Delete, or go to Profile → My Uploads.<br/><br/><b>How do I share a document?</b><br/>Open it and click 🔗 Share to get a shareable link.<br/><br/><b>Keyboard shortcuts?</b><br/>Press <kbd>/</kbd> to focus search. Press <kbd>Esc</kbd> to close any modal.<br/><br/><b>Need help or have a question?</b><br/>Reach us at <a href="mailto:chaiwayofficial@gmail.com" style="color:#e8a068">chaiwayofficial@gmail.com</a> — we're happy to help!`
+  privacy:`<b>Privacy Policy</b><br/><br/>Chaiway stores account/session preferences in your browser. Uploaded files can be stored in your connected Supabase project (cloud storage + database metadata), reducing dependence on local device storage. Passwords are hashed with SHA-256 before storage. You can delete all your data from Profile → Settings → Clear All My Data.<br/><br/>We use no tracking cookies or third-party analytics.`,
+  faq:`<b>FAQ</b><br/><br/><b>Is Chaiway free?</b><br/>Yes, 100% free forever.<br/><br/><b>Where is my data?</b><br/>Session/settings are browser-local; files can be synced to your Supabase cloud project when connected.<br/><br/><b>What file types are supported?</b><br/>PDF, DOC, DOCX, PPT, PPTX, PNG, JPG, GIF, WEBP — max 50 MB each.<br/><br/><b>Can I delete my uploads?</b><br/>Yes — open any doc and click 🗑 Delete, or go to Profile → My Uploads.<br/><br/><b>How do I share a document?</b><br/>Open it and click 🔗 Share to get a shareable link.<br/><br/><b>Keyboard shortcuts?</b><br/>Press <kbd>/</kbd> to focus search. Press <kbd>Esc</kbd> to close any modal.<br/><br/><b>Need help or have a question?</b><br/>Reach us at <a href="mailto:chaiwayofficial@gmail.com" style="color:#e8a068">chaiwayofficial@gmail.com</a> — we're happy to help!`
 };
 window.showInfoModal=type=>{document.getElementById('info-title').textContent={terms:'Terms of Use',privacy:'Privacy Policy',faq:'FAQ'}[type]||'';document.getElementById('info-content').innerHTML=INFO[type]||'';document.getElementById('info-modal').classList.add('open');};
 window.closeInfoModal=()=>document.getElementById('info-modal').classList.remove('open');
