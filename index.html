@@ -27,8 +27,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .nav-links{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
 .nav-links button{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;transition:color .2s;padding:0}
 .nav-links button:hover,.nav-links button.active{color:var(--ink)}
-.btn-nav{padding:.42rem 1rem;background:var(--ink);color:var(--bg)!important;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;transition:background .2s}
-.btn-nav:hover{background:var(--accent)!important}
+.btn-nav{padding:.42rem 1rem;background:var(--accent);color:#fff!important;border:2px solid var(--accent);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-nav:hover{background:#b03a0a!important;border-color:#b03a0a!important;transform:translateY(-1px)}
 .btn-upload-nav{padding:.42rem 1rem;background:var(--accent);color:#fff!important;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;transition:background .2s}
 .btn-upload-nav:hover{background:#b03a0a!important}
 .btn-icon{background:none;border:1.5px solid var(--border);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--ink);position:relative}
@@ -104,82 +104,47 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .rank-card.achieved{border-color:var(--accent)}
 .rank-card.current-rank{box-shadow:0 0 0 2.5px var(--accent);background:var(--surface)}
 
-/* ═══ AI PROJECT IDEAS ════════════════════════════════════ */
-.ideas-page{max-width:860px;margin:0 auto;padding:3rem 2rem}
-.ideas-page h1{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.3rem}
-.ideas-controls{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.5rem 0}
-.ideas-select{padding:.6rem 1rem;border:1.5px solid var(--border);border-radius:.7rem;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--surface);color:var(--ink);outline:none}
-.btn-gen-ideas{padding:.6rem 1.4rem;background:var(--accent);color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s}
-.btn-gen-ideas:hover{background:#b03a0a}
-.btn-gen-ideas:disabled{opacity:.6;cursor:not-allowed}
-.ideas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem;margin-top:1rem}
-.idea-card{background:var(--card);border:1.5px solid var(--border);border-radius:1.1rem;padding:1.3rem 1.4rem;transition:transform .2s,box-shadow .2s}
-.idea-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.idea-card-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.02em}
-.idea-card-desc{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:.7rem}
-.idea-card-tags{display:flex;gap:.35rem;flex-wrap:wrap}
-.idea-tag{padding:.15rem .55rem;background:var(--border);border-radius:100px;font-size:.7rem;font-weight:600;color:var(--muted)}
-.idea-diff{font-size:.7rem;font-weight:700;padding:.15rem .55rem;border-radius:100px}
-.diff-easy{background:#d8fde8;color:#0a7a2e}
-.diff-medium{background:#fdf8d8;color:#7a6200}
-.diff-hard{background:#fde8d8;color:#b03a0a}
-.ideas-empty{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
-.ideas-loading{text-align:center;padding:2.5rem;color:var(--muted);font-size:.9rem}
-
-/* ═══ AI DOUBTS CHAT ══════════════════════════════════════ */
-.doubt-msg{display:flex;gap:.7rem;align-items:flex-end}
-.doubt-msg.doubt-user{flex-direction:row-reverse}
-.doubt-bubble{max-width:85%;padding:.85rem 1.1rem;border-radius:1.2rem;font-size:.88rem;line-height:1.7;white-space:pre-wrap}
-.doubt-ai .doubt-bubble{background:var(--card);border:1.5px solid var(--border);border-bottom-left-radius:.3rem;color:var(--ink)}
-.doubt-user .doubt-bubble{background:var(--accent);color:#fff;border-bottom-right-radius:.3rem}
-.doubt-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;background:var(--card);border:1.5px solid var(--border)}
-.doubt-typing{display:flex;gap:4px;align-items:center;padding:.6rem .9rem}
-.doubt-typing span{width:7px;height:7px;background:var(--muted);border-radius:50%;animation:typing-dot 1.2s infinite}
-.doubt-typing span:nth-child(2){animation-delay:.2s}
-.doubt-typing span:nth-child(3){animation-delay:.4s}
-@keyframes typing-dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
-
 /* ═══ LOGIN ═════════════════════════════════════════════════ */
-#page-login{background:var(--dark-bg);color:#f0ebe3;min-height:100vh}
-.login-left{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:3rem;border-right:1px solid var(--dark-border)}
-.login-logo{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;letter-spacing:-.03em;color:#f0ebe3;background:none;border:none;cursor:pointer}
+#page-login{background:#ffffff;color:#1a1410;min-height:100vh}
+.login-left{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:3rem;border-right:1px solid #e8e0d4;background:#1a1410}
+.login-logo{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;letter-spacing:-.03em;color:#f5f0e8;background:none;border:none;cursor:pointer}
 .login-logo span{color:#d4561a}
-.login-quote{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.2;letter-spacing:-.03em;margin-bottom:2rem;max-width:480px}
+.login-quote{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.2;letter-spacing:-.03em;margin-bottom:2rem;max-width:480px;color:#f5f0e8}
 .login-quote em{color:#d4561a;font-style:italic}
 .login-stats{display:flex;gap:2.5rem;margin-top:3rem}
 .ls-n{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:#e8a068}
-.ls-l{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.login-footer-txt{font-size:.76rem;color:var(--muted)}
-.login-right{width:480px;display:flex;align-items:center;justify-content:center;padding:3rem 2.5rem}
+.ls-l{font-size:.73rem;color:#a09890;text-transform:uppercase;letter-spacing:.08em}
+.login-footer-txt{font-size:.76rem;color:#a09890}
+.login-right{width:480px;display:flex;align-items:center;justify-content:center;padding:3rem 2.5rem;background:#ffffff}
 .form-box{width:100%;max-width:380px}
-.auth-tabs{display:flex;margin-bottom:2.5rem;background:var(--dark-card);border-radius:.75rem;padding:.3rem;border:1px solid var(--dark-border)}
-.auth-tab{flex:1;padding:.6rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;color:var(--muted);border-radius:.5rem;cursor:pointer;transition:all .2s}
-.auth-tab.active{background:#d4561a;color:#fff}
-.form-title{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.4rem;color:#f0ebe3}
-.form-sub{font-size:.85rem;color:var(--muted);margin-bottom:2rem}
+.auth-tabs{display:flex;margin-bottom:2.5rem;background:#f5f0e8;border-radius:.75rem;padding:.3rem;border:1px solid #d4cdc0}
+.auth-tab{flex:1;padding:.6rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;color:#7a6e62;border-radius:.5rem;cursor:pointer;transition:all .2s}
+.auth-tab.active{background:#c9440f;color:#fff}
+.form-title{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.4rem;color:#1a1410}
+.form-sub{font-size:.85rem;color:#7a6e62;margin-bottom:2rem}
 .form-group{margin-bottom:1.2rem}
-.form-group label{display:block;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em}
-.form-group input,.form-group select{width:100%;padding:.8rem 1rem;background:#1a1610;border:1.5px solid var(--dark-border);border-radius:.65rem;font-family:'DM Sans',sans-serif;font-size:.92rem;color:#f0ebe3;outline:none;transition:border-color .2s}
-.form-group input:focus,.form-group select:focus{border-color:#d4561a;box-shadow:0 0 0 3px rgba(212,86,26,.15)}
-.form-group input::placeholder{color:var(--muted)}
-.form-group select option{background:#1a1610}
-.forgot-link{font-size:.78rem;color:var(--muted);float:right;margin-top:-.8rem;margin-bottom:1rem;display:block;background:none;border:none;cursor:pointer}
-.forgot-link:hover{color:#e8a068}
-.btn-auth{width:100%;padding:.9rem;background:#d4561a;border:none;border-radius:.65rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#fff;cursor:pointer;transition:all .25s;margin-top:.5rem}
-.btn-auth:hover{background:#bf4d17;transform:translateY(-1px);box-shadow:0 8px 24px rgba(212,86,26,.35)}
+.form-group label{display:block;font-size:.78rem;font-weight:600;color:#7a6e62;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em}
+.form-group input,.form-group select{width:100%;padding:.8rem 1rem;background:#f5f0e8;border:1.5px solid #d4cdc0;border-radius:.65rem;font-family:'DM Sans',sans-serif;font-size:.92rem;color:#1a1410;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:#c9440f;box-shadow:0 0 0 3px rgba(201,68,15,.15)}
+.form-group input::placeholder{color:#b0a898}
+.form-group select option{background:#ffffff;color:#1a1410}
+.forgot-link{font-size:.78rem;color:#7a6e62;float:right;margin-top:-.8rem;margin-bottom:1rem;display:block;background:none;border:none;cursor:pointer}
+.forgot-link:hover{color:#c9440f}
+.btn-auth{width:100%;padding:.9rem;background:#c9440f;border:none;border-radius:.65rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#fff;cursor:pointer;transition:all .25s;margin-top:.5rem}
+.btn-auth:hover{background:#b03a0a;transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,68,15,.35)}
 .btn-auth:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.auth-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;color:var(--muted);font-size:.78rem}
-.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--dark-border)}
-.auth-terms{font-size:.73rem;color:var(--muted);text-align:center;margin-top:1.5rem;line-height:1.6}
-.auth-terms a{color:#e8a068;text-decoration:none}
-.strength-bar{height:3px;border-radius:100px;background:var(--dark-border);margin-top:.5rem;overflow:hidden;display:none}
+.auth-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;color:#7a6e62;font-size:.78rem}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:#d4cdc0}
+.auth-terms{font-size:.73rem;color:#7a6e62;text-align:center;margin-top:1.5rem;line-height:1.6}
+.auth-terms a{color:#c9440f;text-decoration:none}
+.strength-bar{height:3px;border-radius:100px;background:#d4cdc0;margin-top:.5rem;overflow:hidden;display:none}
 .strength-fill{height:100%;border-radius:100px;width:0%;transition:width .3s,background .3s}
-.strength-lbl{font-size:.72rem;color:var(--muted);margin-top:.3rem;display:none}
-.auth-error{padding:.75rem 1rem;border-radius:.6rem;font-size:.85rem;margin-bottom:1rem;display:none}
+.strength-lbl{font-size:.72rem;color:#7a6e62;margin-top:.3rem;display:none}
+.auth-error{padding:.75rem 1rem;border-radius:.6rem;font-size:.85rem;margin-bottom:1rem;display:none;background:#fde8d8;color:#b03a0a;border:1px solid #f5c4a8}
 .auth-success{display:none;text-align:center;padding:2rem 0}
 .auth-success .big-emoji{font-size:3.5rem;margin-bottom:1rem;display:block}
-.auth-success h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;margin-bottom:.5rem;color:#f0ebe3}
-.auth-success p{color:var(--muted);font-size:.88rem}
+.auth-success h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;margin-bottom:.5rem;color:#1a1410}
+.auth-success p{color:#7a6e62;font-size:.88rem}
 
 /* ═══ BROWSE ════════════════════════════════════════════════ */
 .search-hero{background:var(--ink);color:var(--bg);padding:3rem 5vw;text-align:center}
@@ -486,6 +451,134 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .admin-table td{padding:.6rem .8rem;border-bottom:1px solid var(--border);vertical-align:middle}
 .admin-table tr:hover td{background:var(--card)}
 
+
+/* ═══ FLASHCARDS ═════════════════════════════════════════════ */
+.fc-main{max-width:960px;margin:0 auto;padding:3rem 2rem}
+.fc-main h1{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.3rem}
+.fc-main>p{color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+.fc-top-row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:2rem}
+.fc-top-row h2{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:900;flex:1}
+.btn-fc{padding:.6rem 1.3rem;background:var(--ink);color:var(--bg);border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-fc:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-fc.secondary{background:var(--card);color:var(--ink);border:1.5px solid var(--border)}
+.btn-fc.secondary:hover{background:var(--border)}
+.btn-fc.danger:hover{background:#c0392b}
+.decks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem}
+.deck-card{background:var(--card);border:1.5px solid var(--border);border-radius:1.3rem;padding:1.4rem 1.5rem;cursor:pointer;transition:all .25s;position:relative}
+.deck-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,.12);border-color:var(--accent)}
+.deck-card-icon{font-size:2rem;margin-bottom:.7rem;display:block}
+.deck-card-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem;letter-spacing:-.02em}
+.deck-card-meta{font-size:.76rem;color:var(--muted);display:flex;gap:.6rem;align-items:center}
+.deck-card-actions{position:absolute;top:.7rem;right:.7rem;display:flex;gap:.3rem;opacity:0;transition:opacity .2s}
+.deck-card:hover .deck-card-actions{opacity:1}
+.deck-mini-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:50%;width:26px;height:26px;font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.deck-mini-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fc-empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.fc-empty .big-emoji{font-size:3rem;display:block;margin-bottom:1rem}
+
+/* Card list view */
+.fc-card-list{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem}
+.fc-card-item{background:var(--surface);border:1.5px solid var(--border);border-radius:.9rem;padding:.9rem 1.1rem;display:flex;align-items:flex-start;gap:1rem}
+.fc-card-item:hover{border-color:var(--accent)}
+.fc-card-sides{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.fc-side-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.15rem}
+.fc-side-text{font-size:.88rem;color:var(--ink);line-height:1.5}
+.fc-card-actions{display:flex;gap:.3rem;flex-shrink:0;margin-top:.1rem}
+
+/* New card form */
+.fc-add-form{background:var(--card);border:1.5px solid var(--border);border-radius:1.2rem;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.fc-add-form.open{display:block}
+.fc-add-form h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:1rem}
+.fc-input-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1rem}
+.fc-textarea{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:.7rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--surface);outline:none;resize:vertical;min-height:70px;transition:border-color .2s}
+.fc-textarea:focus{border-color:var(--accent)}
+.fc-textarea::placeholder{color:var(--muted)}
+.fc-form-btns{display:flex;gap:.7rem}
+
+/* Quiz / study mode */
+.fc-quiz-wrap{max-width:620px;margin:0 auto;padding:2rem 1rem}
+.fc-quiz-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.fc-progress-bar{flex:1;height:6px;background:var(--border);border-radius:100px;overflow:hidden;min-width:80px}
+.fc-progress-fill{height:100%;border-radius:100px;background:var(--accent);transition:width .4s ease}
+.fc-progress-lbl{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.fc-flipcard{perspective:1000px;height:280px;cursor:pointer;margin-bottom:1.5rem}
+.fc-flipcard-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.fc-flipcard.flipped .fc-flipcard-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.fc-face-front{background:var(--surface);border:1.5px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.fc-face-back{background:var(--ink);color:var(--bg);transform:rotateY(180deg)}
+[data-theme="dark"] .fc-face-back{background:var(--accent)}
+.fc-face-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.5;margin-bottom:.8rem}
+.fc-face-text{font-family:'Fraunces',serif;font-size:clamp(1.1rem,3vw,1.6rem);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.fc-hint{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:1.5rem}
+.fc-quiz-btns{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+.btn-fc-correct{padding:.75rem 1.8rem;background:#27ae60;color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-fc-correct:hover{background:#219a52;transform:translateY(-2px)}
+.btn-fc-wrong{padding:.75rem 1.8rem;background:#e74c3c;color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-fc-wrong:hover{background:#c0392b;transform:translateY(-2px)}
+.fc-result-screen{text-align:center;padding:3rem 1rem}
+.fc-result-screen .big-emoji{font-size:4rem;display:block;margin-bottom:1rem}
+.fc-result-screen h2{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.fc-score-ring{width:100px;height:100px;border-radius:50%;border:5px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:1.5rem auto;font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900}
+.fc-missed-list{text-align:left;margin:1.5rem 0;display:flex;flex-direction:column;gap:.5rem}
+.fc-missed-item{background:var(--card);border-left:3px solid #e74c3c;border-radius:.5rem;padding:.6rem .9rem;font-size:.84rem}
+
+
+/* ═══ STUDY TIMER (POMODORO) ════════════════════════════════ */
+.timer-main{max-width:760px;margin:0 auto;padding:3rem 2rem}
+.timer-main h1{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.2rem}
+.timer-main>p{color:var(--muted);font-size:.9rem;margin-bottom:2.5rem}
+.timer-card{background:var(--card);border:1.5px solid var(--border);border-radius:2rem;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.5rem}
+.timer-mode-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem;background:var(--surface);border:1.5px solid var(--border);border-radius:100px;padding:.3rem;width:fit-content;margin-left:auto;margin-right:auto}
+.timer-tab{padding:.45rem 1.1rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--muted);border-radius:100px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.timer-tab.active{background:var(--ink);color:var(--bg)}
+.timer-ring-wrap{position:relative;width:200px;height:200px;margin:0 auto 1.5rem}
+.timer-svg{transform:rotate(-90deg)}
+.timer-ring-bg{fill:none;stroke:var(--border);stroke-width:8}
+.timer-ring-fg{fill:none;stroke:var(--accent);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .9s linear;stroke-dasharray:565;stroke-dashoffset:0}
+.timer-ring-fg.break{stroke:#27ae60}
+.timer-ring-fg.long-break{stroke:#2980b9}
+.timer-display{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.timer-time{font-family:'Fraunces',serif;font-size:3rem;font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.timer-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.3rem}
+.timer-controls{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.btn-timer{padding:.75rem 2rem;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-timer.primary{background:var(--ink);color:var(--bg)}
+.btn-timer.primary:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-timer.secondary{background:var(--card);color:var(--ink);border:1.5px solid var(--border)}
+.btn-timer.secondary:hover{background:var(--border)}
+.timer-session-count{display:flex;gap:.4rem;justify-content:center;margin-bottom:.5rem}
+.session-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background .3s}
+.session-dot.done{background:var(--accent)}
+.session-dot.break-done{background:#27ae60}
+.timer-settings{background:var(--surface);border:1.5px solid var(--border);border-radius:1.3rem;padding:1.5rem;margin-bottom:1.5rem}
+.timer-settings h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:1.2rem}
+.timer-settings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.timer-setting-item label{display:block;font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
+.timer-setting-input{width:100%;padding:.6rem .9rem;border:1.5px solid var(--border);border-radius:.65rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--ink);background:var(--surface);outline:none;text-align:center;transition:border-color .2s}
+.timer-setting-input:focus{border-color:var(--accent)}
+.timer-history{background:var(--surface);border:1.5px solid var(--border);border-radius:1.3rem;padding:1.5rem}
+.timer-history h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.timer-history-meta{font-size:.78rem;color:var(--muted);margin-bottom:1rem}
+.timer-history-list{display:flex;flex-direction:column;gap:.5rem;max-height:280px;overflow-y:auto}
+.th-item{display:flex;align-items:center;gap:.8rem;padding:.6rem .9rem;background:var(--card);border-radius:.7rem;font-size:.83rem}
+.th-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.th-dot.focus{background:var(--accent)}
+.th-dot.brk{background:#27ae60}
+.th-label{flex:1;font-weight:500}
+.th-dur{font-size:.75rem;color:var(--muted);margin-left:auto;white-space:nowrap}
+.timer-stats-row{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.timer-stat{background:var(--card);border:1.5px solid var(--border);border-radius:1rem;padding:1rem 1.2rem;flex:1;min-width:100px;text-align:center}
+.timer-stat .tsn{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900}
+.timer-stat .tsl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:.15rem}
+.timer-sound-row{display:flex;align-items:center;justify-content:center;gap:.7rem;font-size:.84rem;color:var(--muted);margin-top:.8rem}
+.toggle-switch{position:relative;display:inline-block;width:38px;height:22px}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--border);border-radius:100px;transition:.3s}
+.toggle-slider:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s}
+.toggle-switch input:checked+.toggle-slider{background:var(--accent)}
+.toggle-switch input:checked+.toggle-slider:before{transform:translateX(16px)}
+
 /* ═══ RESPONSIVE ════════════════════════════════════════════ */
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
@@ -522,8 +615,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
   <div class="nav-links">
     <button onclick="nav('browse')" class="hide-sm">Browse</button>
     <button onclick="nav('planner')" class="hide-sm">📚 Planner</button>
-    <button onclick="nav('ideas')" class="hide-sm">💡 Project Ideas</button>
-    <button onclick="nav('doubts')" class="hide-sm">🤖 AI Doubts</button>
+    <button onclick="nav('flashcards')" class="hide-sm">🃏 Flashcards</button>
+    <button onclick="nav('timer')" class="hide-sm">⏱ Timer</button>
     <button onclick="nav('upload')" id="nav-upload" class="btn-upload-nav hide-sm" style="display:none">+ Upload</button>
     <button onclick="nav('profile')" id="nav-profile" class="hide-sm" style="display:none">My Profile</button>
     <button onclick="nav('admin')" id="nav-admin" style="display:none;font-size:.78rem" class="hide-sm">⚙ Admin</button>
@@ -575,6 +668,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
       <div class="feature-card fade-in"><span class="feature-icon">👥</span><h3>Community Driven</h3><p>Students upload, students benefit. Like, comment and rate to surface the best material.</p></div>
       <div class="feature-card fade-in"><span class="feature-icon">📚</span><h3>Study Planner</h3><p>Built-in task tracker with deadlines. Organize what to study and mark docs as done.</p></div>
       <div class="feature-card fade-in"><span class="feature-icon">🔔</span><h3>Activity Feed</h3><p>Get notified when someone likes or comments on your uploads.</p></div>
+      <div class="feature-card fade-in" style="border-color:var(--accent);background:linear-gradient(135deg,var(--card),var(--surface))"><span class="feature-icon">🃏</span><h3>Flashcard Maker</h3><p>Create custom decks, flip through cards, and track which ones you've mastered.</p><button onclick="nav('flashcards')" style="margin-top:.8rem;padding:.4rem 1rem;background:var(--accent);color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer">Try it →</button></div>
+      <div class="feature-card fade-in" style="border-color:#2980b9;background:linear-gradient(135deg,var(--card),var(--surface))"><span class="feature-icon">⏱</span><h3>Pomodoro Timer</h3><p>Stay focused with timed study sessions, smart breaks, and a full session history to track your grind.</p><button onclick="nav('timer')" style="margin-top:.8rem;padding:.4rem 1rem;background:#2980b9;color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer">Start focusing →</button></div>
     </div>
   </section>
   <section class="how-section">
@@ -589,40 +684,84 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
     </div>
   </section>
 
-  <!-- ✦ PROJECT IDEAS FEATURE SECTION ✦ -->
-  <section style="padding:6rem 6vw;background:var(--bg)">
-    <div style="max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
-      <div class="fade-in">
-        <p class="section-label">✨ Feature #2</p>
-        <h2 class="section-h2" style="margin-bottom:1rem">Stuck on what to<br><em style="color:var(--accent);font-style:italic">build next?</em></h2>
-        <p style="font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem">Our AI generates tailored project ideas based on your subject, board (CBSE, State Board, IB & more), and difficulty level — in seconds. Perfect for science fairs, assignments, or just sparking inspiration.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem">
-          <li style="display:flex;align-items:center;gap:.7rem;font-size:.92rem"><span style="color:var(--accent);font-size:1.1rem">✓</span> Personalised to your curriculum</li>
-          <li style="display:flex;align-items:center;gap:.7rem;font-size:.92rem"><span style="color:var(--accent);font-size:1.1rem">✓</span> Easy, Medium & Hard difficulty options</li>
-          <li style="display:flex;align-items:center;gap:.7rem;font-size:.92rem"><span style="color:var(--accent);font-size:1.1rem">✓</span> Covers all major subjects</li>
-          <li style="display:flex;align-items:center;gap:.7rem;font-size:.92rem"><span style="color:var(--accent);font-size:1.1rem">✓</span> 6 fresh ideas generated instantly</li>
-        </ul>
-        <button class="cta-primary" onclick="nav('ideas')" style="font-size:1rem;padding:1rem 2.2rem">💡 Try Project Ideas →</button>
+  <!-- ✦ GLOBAL EXAMS SECTION ✦ -->
+  <section style="padding:5rem 6vw;background:var(--ink);color:var(--bg)">
+    <div style="max-width:1300px;margin:0 auto">
+      <p class="section-label fade-in" style="color:#d46c3c">Global Coverage</p>
+      <h2 class="section-h2 fade-in" style="color:var(--bg);margin-bottom:.8rem">Resources for every exam,<br><em style="color:#e8a068;font-style:italic">everywhere.</em></h2>
+      <p class="fade-in" style="color:#a09890;font-size:.95rem;margin-bottom:3rem;max-width:560px">From JEE and NEET to SAT, A-Levels, Gaokao and beyond — Chaiway covers the world's most important exams.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem">
+        <!-- India -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🇮🇳</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">India</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">JEE Main &amp; Advanced</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">NEET-UG</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">CBSE / ICSE</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">UPSC / CAT</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">CUET</span>
+          </div>
+        </div>
+        <!-- USA -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🇺🇸</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">USA</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">SAT</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">ACT</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">AP Exams</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">GRE / GMAT</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">MCAT / LSAT</span>
+          </div>
+        </div>
+        <!-- UK -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🇬🇧</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">UK</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Cambridge IGCSE</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">A-Levels</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Edexcel / AQA</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">OCR</span>
+          </div>
+        </div>
+        <!-- International -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🌍</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">International</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">IB (DP / MYP)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">IELTS / TOEFL</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">EmSAT (UAE)</span>
+          </div>
+        </div>
+        <!-- Australia -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🇦🇺</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Australia</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">VCE</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">HSC (NSW)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">ATAR</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">QCE</span>
+          </div>
+        </div>
+        <!-- Asia & Europe -->
+        <div class="fade-in" style="background:#1a1610;border:1.5px solid #2e2820;border-radius:1.2rem;padding:1.2rem 1.4rem">
+          <div style="font-size:1.5rem;margin-bottom:.5rem">🌏</div>
+          <div style="font-size:.72rem;font-weight:700;color:#d46c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Asia &amp; Europe</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Gaokao (China)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">JLPT (Japan)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Abitur (Germany)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Baccalauréat (FR)</span>
+            <span style="font-size:.82rem;color:#e8e0d8;font-weight:600">Leaving Cert (IE)</span>
+          </div>
+        </div>
       </div>
-      <div class="fade-in" style="background:var(--card);border:1.5px solid var(--border);border-radius:1.8rem;padding:2rem;display:flex;flex-direction:column;gap:1rem">
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.3rem">
-          <span style="background:var(--accent);color:#fff;padding:.3rem .8rem;border-radius:100px;font-size:.75rem;font-weight:700">CBSE</span>
-          <span style="background:var(--border);color:var(--muted);padding:.3rem .8rem;border-radius:100px;font-size:.75rem;font-weight:700">Physics</span>
-          <span style="background:var(--border);color:var(--muted);padding:.3rem .8rem;border-radius:100px;font-size:.75rem;font-weight:700">Medium</span>
-        </div>
-        <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:1rem;padding:1rem 1.2rem">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem">🔋 Build a Simple Solar Cell</div>
-          <div style="font-size:.78rem;color:var(--muted)">AI-generated · Ready to build</div>
-        </div>
-        <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:1rem;padding:1rem 1.2rem">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem">🌊 Water Purification Model</div>
-          <div style="font-size:.78rem;color:var(--muted)">AI-generated · Ready to build</div>
-        </div>
-        <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:1rem;padding:1rem 1.2rem">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem">⚡ Electromagnetic Induction Demo</div>
-          <div style="font-size:.78rem;color:var(--muted)">AI-generated · Ready to build</div>
-        </div>
-        <p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:.3rem">✨ Generated just for you</p>
+      <div style="margin-top:2.5rem;text-align:center">
+        <button class="cta-primary" onclick="nav('browse')" style="background:var(--accent);color:#fff;font-size:1rem;padding:1rem 2.5rem">Browse All Exam Resources →</button>
       </div>
     </div>
   </section>
@@ -647,7 +786,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
     <button class="login-logo" onclick="nav('home')">CHAI<span>WAY</span></button>
     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 0">
       <div class="login-quote">Knowledge is better when it's <em>shared.</em></div>
-      <p style="color:var(--muted);font-size:.9rem;line-height:1.7;max-width:380px">Join students uploading notes, past papers, and study guides to help each other succeed.</p>
+      <p style="color:#a09890;font-size:.9rem;line-height:1.7;max-width:380px">Join students uploading notes, past papers, and study guides to help each other succeed.</p>
       <div class="login-stats">
         <div><div class="ls-n" id="ls-docs">—</div><div class="ls-l">Documents</div></div>
         <div><div class="ls-n" id="ls-users">—</div><div class="ls-l">Students</div></div>
@@ -720,12 +859,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
       </div>
     </div>
     <div class="quick-tags">
+      <button class="quick-tag" onclick="quickSearch('JEE')">JEE</button>
+      <button class="quick-tag" onclick="quickSearch('NEET')">NEET</button>
+      <button class="quick-tag" onclick="quickSearch('SAT')">SAT</button>
+      <button class="quick-tag" onclick="quickSearch('CBSE')">CBSE</button>
+      <button class="quick-tag" onclick="quickSearch('A-Level')">A-Levels</button>
+      <button class="quick-tag" onclick="quickSearch('IB')">IB</button>
+      <button class="quick-tag" onclick="quickSearch('UPSC')">UPSC</button>
       <button class="quick-tag" onclick="quickSearch('Physics')">Physics</button>
-      <button class="quick-tag" onclick="quickSearch('Mathematics')">Mathematics</button>
-      <button class="quick-tag" onclick="quickSearch('Chemistry')">Chemistry</button>
+      <button class="quick-tag" onclick="quickSearch('Mathematics')">Maths</button>
       <button class="quick-tag" onclick="quickSearch('Past Paper')">Past Papers</button>
-      <button class="quick-tag" onclick="quickSearch('Biology')">Biology</button>
-      <button class="quick-tag" onclick="quickSearch('Economics')">Economics</button>
     </div>
   </div>
   <div class="browse-body">
@@ -735,8 +878,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
         <div class="filter-options">
           <label class="filter-opt"><input type="checkbox" value="Past Paper" onchange="applyFilters()"/> Past Paper <span class="cnt" id="cnt-Past Paper">0</span></label>
           <label class="filter-opt"><input type="checkbox" value="Class Notes" onchange="applyFilters()"/> Class Notes <span class="cnt" id="cnt-Class Notes">0</span></label>
-          <label class="filter-opt"><input type="checkbox" value="Study Guide" onchange="applyFilters()"/> Study Guide <span class="cnt" id="cnt-Study Guide">0</span></label>
-          <label class="filter-opt"><input type="checkbox" value="Mark Scheme" onchange="applyFilters()"/> Mark Scheme <span class="cnt" id="cnt-Mark Scheme">0</span></label>
+          <label class="filtek Scheme">0</span></label>
           <label class="filter-opt"><input type="checkbox" value="Revision Summary" onchange="applyFilters()"/> Revision Summary <span class="cnt" id="cnt-Revision Summary">0</span></label>
           <label class="filter-opt"><input type="checkbox" value="Image" onchange="applyFilters()"/> Image <span class="cnt" id="cnt-Image">0</span></label>
           <label class="filter-opt"><input type="checkbox" value="Other" onchange="applyFilters()"/> Other <span class="cnt" id="cnt-Other">0</span></label>
@@ -762,15 +904,42 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
         </div>
       </div>
       <div class="filter-section">
-        <div class="filter-title">Curriculum</div>
+        <div class="filter-title">Curriculum / Exam</div>
         <div class="filter-options">
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.4rem 0 .2rem">🇮🇳 India — School</div>
           <label class="filter-opt"><input type="checkbox" value="CBSE" onchange="applyFilters()"/> CBSE</label>
+          <label class="filter-opt"><input type="checkbox" value="ICSE" onchange="applyFilters()"/> ICSE / ISC</label>
           <label class="filter-opt"><input type="checkbox" value="State Board" onchange="applyFilters()"/> State Board (India)</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🇮🇳 India — Entrance</div>
+          <label class="filter-opt"><input type="checkbox" value="JEE Main" onchange="applyFilters()"/> JEE Main</label>
+          <label class="filter-opt"><input type="checkbox" value="JEE Advanced" onchange="applyFilters()"/> JEE Advanced</label>
+          <label class="filter-opt"><input type="checkbox" value="NEET-UG" onchange="applyFilters()"/> NEET-UG</label>
+          <label class="filter-opt"><input type="checkbox" value="UPSC" onchange="applyFilters()"/> UPSC</label>
+          <label class="filter-opt"><input type="checkbox" value="CAT" onchange="applyFilters()"/> CAT</label>
+          <label class="filter-opt"><input type="checkbox" value="CUET" onchange="applyFilters()"/> CUET</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🇺🇸 USA</div>
+          <label class="filter-opt"><input type="checkbox" value="SAT" onchange="applyFilters()"/> SAT</label>
+          <label class="filter-opt"><input type="checkbox" value="ACT" onchange="applyFilters()"/> ACT</label>
+          <label class="filter-opt"><input type="checkbox" value="AP" onchange="applyFilters()"/> AP (Advanced Placement)</label>
+          <label class="filter-opt"><input type="checkbox" value="GRE" onchange="applyFilters()"/> GRE</label>
+          <label class="filter-opt"><input type="checkbox" value="GMAT" onchange="applyFilters()"/> GMAT</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🇬🇧 UK</div>
           <label class="filter-opt"><input type="checkbox" value="Cambridge IGCSE" onchange="applyFilters()"/> Cambridge IGCSE</label>
           <label class="filter-opt"><input type="checkbox" value="Cambridge A-Level" onchange="applyFilters()"/> Cambridge A-Level</label>
-          <label class="filter-opt"><input type="checkbox" value="IB" onchange="applyFilters()"/> IB</label>
-          <label class="filter-opt"><input type="checkbox" value="AQA" onchange="applyFilters()"/> AQA</label>
           <label class="filter-opt"><input type="checkbox" value="Edexcel" onchange="applyFilters()"/> Edexcel</label>
+          <label class="filter-opt"><input type="checkbox" value="AQA" onchange="applyFilters()"/> AQA</label>
+          <label class="filter-opt"><input type="checkbox" value="OCR" onchange="applyFilters()"/> OCR</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🌍 International</div>
+          <label class="filter-opt"><input type="checkbox" value="IB" onchange="applyFilters()"/> IB (International Baccalaureate)</label>
+          <label class="filter-opt"><input type="checkbox" value="IELTS" onchange="applyFilters()"/> IELTS</label>
+          <label class="filter-opt"><input type="checkbox" value="TOEFL" onchange="applyFilters()"/> TOEFL</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🇦🇺 Australia</div>
+          <label class="filter-opt"><input type="checkbox" value="VCE" onchange="applyFilters()"/> VCE</label>
+          <label class="filter-opt"><input type="checkbox" value="HSC" onchange="applyFilters()"/> HSC (NSW)</label>
+          <div style="font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:.6rem 0 .2rem">🌏 Asia &amp; Other</div>
+          <label class="filter-opt"><input type="checkbox" value="Gaokao" onchange="applyFilters()"/> Gaokao (China)</label>
+          <label class="filter-opt"><input type="checkbox" value="Abitur" onchange="applyFilters()"/> Abitur (Germany)</label>
+          <label class="filter-opt"><input type="checkbox" value="EmSAT" onchange="applyFilters()"/> EmSAT (UAE)</label>
         </div>
       </div>
       <div class="filter-section">
@@ -849,7 +1018,81 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
             <select id="doc-type"><option value="">Select type…</option><option>Past Paper</option><option>Mark Scheme</option><option>Class Notes</option><option>Study Guide</option><option>Revision Summary</option><option>Image</option><option>Other</option></select>
           </div>
           <div class="field"><label>Curriculum / Board</label>
-            <select id="doc-board"><option value="">Select…</option><optgroup label="India"><option>CBSE</option><option>State Board — Maharashtra (SSC/HSC)</option><option>State Board — Tamil Nadu</option><option>State Board — Karnataka</option><option>State Board — Kerala</option><option>State Board — Uttar Pradesh (UP Board)</option><option>State Board — Rajasthan (RBSE)</option><option>State Board — West Bengal (WBBSE)</option><option>State Board — Other</option><option>ICSE / ISC</option></optgroup><optgroup label="International"><option>Cambridge IGCSE</option><option>Cambridge A-Level</option><option>IB (International Baccalaureate)</option><option>Edexcel GCSE</option><option>Edexcel A-Level</option><option>AQA</option><option>OCR</option></optgroup><option>Other</option></select>
+            <select id="doc-board"><option value="">Select…</option>
+<optgroup label="🇮🇳 India — School Boards">
+  <option>CBSE</option>
+  <option>ICSE / ISC</option>
+  <option>State Board — Maharashtra (SSC/HSC)</option>
+  <option>State Board — Tamil Nadu</option>
+  <option>State Board — Karnataka</option>
+  <option>State Board — Kerala</option>
+  <option>State Board — Uttar Pradesh (UP Board)</option>
+  <option>State Board — Rajasthan (RBSE)</option>
+  <option>State Board — West Bengal (WBBSE)</option>
+  <option>State Board — Other</option>
+</optgroup>
+<optgroup label="🇮🇳 India — Competitive Entrance">
+  <option>JEE Main</option>
+  <option>JEE Advanced</option>
+  <option>NEET-UG</option>
+  <option>UPSC (Civil Services)</option>
+  <option>CAT (MBA)</option>
+  <option>CLAT (Law)</option>
+  <option>CUET</option>
+  <option>GATE</option>
+</optgroup>
+<optgroup label="🇺🇸 USA">
+  <option>SAT</option>
+  <option>ACT</option>
+  <option>AP (Advanced Placement)</option>
+  <option>PSAT / NMSQT</option>
+  <option>GRE</option>
+  <option>GMAT</option>
+  <option>MCAT</option>
+  <option>LSAT</option>
+</optgroup>
+<optgroup label="🇬🇧 UK">
+  <option>Cambridge IGCSE</option>
+  <option>Cambridge A-Level</option>
+  <option>Edexcel GCSE</option>
+  <option>Edexcel A-Level</option>
+  <option>AQA</option>
+  <option>OCR</option>
+  <option>WJEC</option>
+</optgroup>
+<optgroup label="🌍 International">
+  <option>IB (International Baccalaureate)</option>
+  <option>IELTS</option>
+  <option>TOEFL</option>
+  <option>GMAT</option>
+  <option>GRE</option>
+</optgroup>
+<optgroup label="🇦🇺 Australia">
+  <option>VCE (Victoria)</option>
+  <option>HSC (NSW)</option>
+  <option>ATAR</option>
+  <option>QCE (Queensland)</option>
+</optgroup>
+<optgroup label="🇨🇳 China">
+  <option>Gaokao</option>
+</optgroup>
+<optgroup label="🇯🇵 Japan">
+  <option>JLPT</option>
+  <option>University Entrance Exam (Japan)</option>
+</optgroup>
+<optgroup label="🇩🇪 Germany / Europe">
+  <option>Abitur</option>
+  <option>Baccalauréat (France)</option>
+  <option>Matura (Austria/Switzerland)</option>
+  <option>Leaving Cert (Ireland)</option>
+</optgroup>
+<optgroup label="🇸🇦 Middle East">
+  <option>EmSAT (UAE)</option>
+  <option>Tawjihi (Jordan/Palestine)</option>
+  <option>Saudi National Curriculum</option>
+</optgroup>
+<option>Other</option>
+</select>
           </div>
           <div class="field"><label>Year / Session</label><input type="text" id="doc-year" placeholder="e.g. May/June 2023"/></div>
           <div class="field"><label>Grade Level</label>
@@ -941,86 +1184,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
   </div>
 </div>
 
-<!-- ═══ PAGE — PROJECT IDEAS ═══════════════════════════════ -->
-<div class="page" id="page-ideas">
-  <div class="ideas-page">
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.3rem">
-      <span style="font-size:3rem">💡</span>
-      <div>
-        <h1 style="margin:0">AI Project Ideas</h1>
-        <p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">Get instant, AI-generated project ideas tailored to your subject, board, and difficulty level.</p>
-      </div>
-    </div>
-    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:1.2rem;padding:1.8rem;margin:1.5rem 0">
-      <p style="font-size:.85rem;font-weight:600;margin-bottom:1rem;color:var(--ink)">Tell us about yourself:</p>
-      <div class="ideas-controls" style="margin:0;gap:1rem">
-        <div style="display:flex;flex-direction:column;gap:.3rem">
-          <label style="font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Subject</label>
-          <select class="ideas-select" id="idea-subject">
-            <option value="">Any Subject</option>
-            <option>Mathematics</option><option>Physics</option><option>Chemistry</option>
-            <option>Biology</option><option>Computer Science</option><option>English Language</option>
-            <option>Hindi</option><option>History</option><option>Geography</option>
-            <option>Economics</option><option>Accountancy</option><option>Business Studies</option>
-            <option>Political Science</option><option>Social Science</option>
-          </select>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:.3rem">
-          <label style="font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Board / Curriculum</label>
-          <select class="ideas-select" id="idea-board">
-            <option value="">Any Board</option>
-            <option>CBSE</option><option>State Board</option><option>ICSE</option>
-            <option>Cambridge IGCSE</option><option>IB</option>
-          </select>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:.3rem">
-          <label style="font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Difficulty</label>
-          <select class="ideas-select" id="idea-diff">
-            <option value="">Any Difficulty</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard / Advanced</option>
-          </select>
-        </div>
-        <div style="display:flex;flex-direction:column;justify-content:flex-end">
-          <button class="btn-gen-ideas" id="btn-gen-ideas" onclick="generateIdeas()" style="padding:.72rem 1.6rem;font-size:.95rem">✨ Generate Ideas</button>
-        </div>
-      </div>
-    </div>
-    <div id="ideas-output"><div class="ideas-empty" style="padding:4rem 2rem">☝️ Choose your subject above and hit <b>Generate Ideas</b> to get started!</div></div>
-  </div>
-</div>
-
-<!-- ═══ PAGE — AI DOUBTS ═══════════════════════════════════ -->
-<div class="page" id="page-doubts">
-  <div style="max-width:760px;margin:0 auto;padding:3rem 2rem;display:flex;flex-direction:column;height:calc(100vh - 60px)">
-    <div style="margin-bottom:1.5rem">
-      <h1 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;letter-spacing:-.03em">🤖 AI Doubts</h1>
-      <p style="color:var(--muted);font-size:.88rem;margin-top:.3rem">Ask any study question — get instant, clear answers tailored to your curriculum.</p>
-      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem">
-        <select id="doubt-subject" class="ideas-select"><option value="">Any Subject</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>English Language</option><option>Hindi</option><option>History</option><option>Geography</option><option>Economics</option><option>Accountancy</option><option>Business Studies</option><option>Political Science</option><option>Social Science</option></select>
-        <select id="doubt-board" class="ideas-select"><option value="">Any Board</option><option>CBSE</option><option>State Board</option><option>ICSE</option><option>Cambridge IGCSE</option><option>IB</option></select>
-        <button onclick="clearDoubtChat()" style="padding:.5rem 1rem;background:var(--card);border:1.5px solid var(--border);border-radius:100px;font-size:.8rem;cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif">🗑 Clear chat</button>
-      </div>
-    </div>
-    <!-- Chat messages -->
-    <div id="doubt-chat" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:1rem;padding:.5rem 0;margin-bottom:1rem;min-height:200px">
-      <div class="doubt-msg doubt-ai">
-        <div class="doubt-bubble">👋 Hi! I'm your Chaiway AI tutor. Ask me anything — a tricky concept, a past paper question, or something you just can't figure out. Select your subject and board above for more focused answers!</div>
-      </div>
-    </div>
-    <!-- Input area -->
-    <div style="display:flex;gap:.7rem;align-items:flex-end">
-      <textarea id="doubt-input" placeholder="Type your question here… e.g. Explain Newton's 3rd law with examples" rows="2"
-        style="flex:1;padding:.85rem 1rem;border:1.5px solid var(--border);border-radius:.9rem;font-family:'DM Sans',sans-serif;font-size:.9rem;background:var(--surface);color:var(--ink);outline:none;resize:none;line-height:1.5;transition:border-color .2s"
-        onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDoubt()}"></textarea>
-      <button onclick="sendDoubt()" id="btn-send-doubt" class="btn-gen-ideas" style="padding:.85rem 1.4rem;flex-shrink:0">Send ➤</button>
-    </div>
-    <p style="font-size:.72rem;color:var(--muted);margin-top:.5rem;text-align:center">AI can make mistakes — always verify important answers. Press Enter to send, Shift+Enter for new line.</p>
-  </div>
-</div>
-
 <!-- ═══ PAGE 6 — STUDY PLANNER ════════════════════════════ -->
 <div class="page" id="page-planner">
   <div class="planner-main">
@@ -1047,6 +1210,208 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
     </div>
     <div id="task-list" class="task-list"></div>
     <div id="planner-stats" style="margin-top:1.5rem;font-size:.82rem;color:var(--muted)"></div>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 8 — FLASHCARDS ═══════════════════════════════ -->
+<div class="page" id="page-flashcards">
+  <div class="fc-main" id="fc-main-view">
+    <div class="fc-top-row">
+      <div>
+        <h1>🃏 Flashcards</h1>
+        <p style="color:var(--muted);font-size:.88rem;margin-top:.1rem">Create decks, study cards, and track what you know.</p>
+      </div>
+      <button class="btn-fc" onclick="fcShowNewDeckForm()">+ New Deck</button>
+    </div>
+    <div id="fc-new-deck-form" style="display:none;background:var(--card);border:1.5px solid var(--border);border-radius:1.2rem;padding:1.4rem;margin-bottom:1.5rem">
+      <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:1rem">New Deck</h3>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:.8rem">
+        <input id="fc-deck-name" type="text" placeholder="Deck name e.g. Physics Chapter 5" maxlength="60"
+          style="flex:1;min-width:180px;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:.7rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--surface);outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
+          onkeydown="if(event.key==='Enter')fcCreateDeck()"/>
+        <input id="fc-deck-subject" type="text" placeholder="Subject (optional)"
+          style="width:180px;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:.7rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--surface);outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
+          onkeydown="if(event.key==='Enter')fcCreateDeck()"/>
+      </div>
+      <div style="display:flex;gap:.6rem">
+        <button class="btn-fc" onclick="fcCreateDeck()">Create Deck</button>
+        <button class="btn-fc secondary" onclick="fcHideNewDeckForm()">Cancel</button>
+      </div>
+    </div>
+    <div id="fc-decks-container"></div>
+  </div>
+  <div class="fc-main" id="fc-deck-view" style="display:none">
+    <div class="fc-top-row">
+      <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;flex:1">
+        <button class="btn-fc secondary" onclick="fcBackToDecks()" style="padding:.5rem .9rem;font-size:.8rem">← Back</button>
+        <h2 id="fc-deck-title" style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;letter-spacing:-.03em"></h2>
+        <span id="fc-deck-count" style="font-size:.8rem;color:var(--muted);background:var(--card);padding:.2rem .7rem;border-radius:100px;border:1.5px solid var(--border)"></span>
+      </div>
+      <button class="btn-fc" onclick="fcStartQuiz()" id="fc-start-quiz-btn">▶ Study</button>
+      <button class="btn-fc secondary" onclick="fcToggleAddForm()">+ Add Card</button>
+    </div>
+    <div class="fc-add-form" id="fc-add-card-form">
+      <h3 id="fc-form-title">Add Card</h3>
+      <div class="fc-input-row">
+        <div>
+          <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem">Front (Question / Term)</div>
+          <textarea class="fc-textarea" id="fc-front-input" placeholder="e.g. What is Newton's 2nd Law?"></textarea>
+        </div>
+        <div>
+          <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem">Back (Answer / Definition)</div>
+          <textarea class="fc-textarea" id="fc-back-input" placeholder="e.g. F = ma — Force equals mass times acceleration."></textarea>
+        </div>
+      </div>
+      <div class="fc-form-btns">
+        <button class="btn-fc" id="fc-save-card-btn" onclick="fcSaveCard()">Save Card</button>
+        <button class="btn-fc secondary" onclick="fcCloseAddForm()">Cancel</button>
+      </div>
+      <input type="hidden" id="fc-edit-card-id"/>
+    </div>
+    <div id="fc-cards-container" class="fc-card-list"></div>
+  </div>
+  <div class="fc-main" id="fc-quiz-view" style="display:none">
+    <div class="fc-quiz-wrap">
+      <div class="fc-quiz-header">
+        <button class="btn-fc secondary" onclick="fcExitQuiz()" style="padding:.5rem .9rem;font-size:.8rem">✕ Exit</button>
+        <div class="fc-progress-bar"><div class="fc-progress-fill" id="fc-prog-fill"></div></div>
+        <span class="fc-progress-lbl" id="fc-prog-lbl"></span>
+      </div>
+      <div class="fc-flipcard" id="fc-flipcard" onclick="fcFlip()">
+        <div class="fc-flipcard-inner">
+          <div class="fc-face fc-face-front">
+            <div class="fc-face-label">Question</div>
+            <div class="fc-face-text" id="fc-front-text"></div>
+          </div>
+          <div class="fc-face fc-face-back">
+            <div class="fc-face-label" style="opacity:.6">Answer</div>
+            <div class="fc-face-text" id="fc-back-text"></div>
+          </div>
+        </div>
+      </div>
+      <p class="fc-hint" id="fc-hint">Click the card to reveal the answer</p>
+      <div class="fc-quiz-btns" id="fc-answer-btns" style="display:none">
+        <button class="btn-fc-wrong" onclick="fcAnswer(false)">✗ Got it wrong</button>
+        <button class="btn-fc-correct" onclick="fcAnswer(true)">✓ Got it right</button>
+      </div>
+    </div>
+    <div id="fc-result-screen" class="fc-result-screen" style="display:none">
+      <span class="big-emoji" id="fc-result-emoji">🎉</span>
+      <h2 id="fc-result-title">Session Complete!</h2>
+      <p id="fc-result-sub" style="color:var(--muted);margin-bottom:.5rem"></p>
+      <div class="fc-score-ring" id="fc-score-ring"></div>
+      <div id="fc-missed-section" style="display:none">
+        <p style="font-size:.85rem;font-weight:600;margin-bottom:.5rem;color:var(--ink)">Cards to review:</p>
+        <div class="fc-missed-list" id="fc-missed-list"></div>
+      </div>
+      <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+        <button class="btn-fc" onclick="fcRestartQuiz()">↺ Study Again</button>
+        <button class="btn-fc secondary" onclick="fcBackToDecks()">← Back to Decks</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE — STUDY TIMER ══════════════════════════════════ -->
+<div class="page" id="page-timer">
+  <div class="timer-main">
+    <h1>⏱ Study Timer</h1>
+    <p>Pomodoro-style focus sessions. Work, rest, repeat — and watch your study streak grow.</p>
+
+    <!-- Stats row -->
+    <div class="timer-stats-row">
+      <div class="timer-stat"><div class="tsn" id="ts-today">0</div><div class="tsl">Sessions Today</div></div>
+      <div class="timer-stat"><div class="tsn" id="ts-minutes">0</div><div class="tsl">Focus Mins Today</div></div>
+      <div class="timer-stat"><div class="tsn" id="ts-streak">0</div><div class="tsl">Day Streak</div></div>
+      <div class="timer-stat"><div class="tsn" id="ts-total">0</div><div class="tsl">Total Sessions</div></div>
+    </div>
+
+    <!-- Main timer card -->
+    <div class="timer-card">
+      <!-- Mode tabs -->
+      <div class="timer-mode-tabs">
+        <button class="timer-tab active" id="tab-focus" onclick="timerSetMode('focus')">Focus</button>
+        <button class="timer-tab" id="tab-short" onclick="timerSetMode('short')">Short Break</button>
+        <button class="timer-tab" id="tab-long" onclick="timerSetMode('long')">Long Break</button>
+      </div>
+
+      <!-- Session dots -->
+      <div class="timer-session-count" id="timer-dots"></div>
+
+      <!-- Ring -->
+      <div class="timer-ring-wrap">
+        <svg class="timer-svg" width="200" height="200" viewBox="0 0 200 200">
+          <circle class="timer-ring-bg" cx="100" cy="100" r="90"/>
+          <circle class="timer-ring-fg" id="timer-ring" cx="100" cy="100" r="90"/>
+        </svg>
+        <div class="timer-display">
+          <div class="timer-time" id="timer-display">25:00</div>
+          <div class="timer-label" id="timer-mode-lbl">Focus</div>
+        </div>
+      </div>
+
+      <!-- Task label -->
+      <div style="margin-bottom:1.2rem">
+        <input id="timer-task-input" type="text" placeholder="What are you working on? (optional)"
+          style="width:100%;max-width:380px;padding:.65rem 1rem;border:1.5px solid var(--border);border-radius:.8rem;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--surface);color:var(--ink);outline:none;text-align:center;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+      </div>
+
+      <!-- Controls -->
+      <div class="timer-controls">
+        <button class="btn-timer secondary" onclick="timerReset()" title="Reset">↺ Reset</button>
+        <button class="btn-timer primary" id="btn-timer-start" onclick="timerToggle()">▶ Start</button>
+        <button class="btn-timer secondary" onclick="timerSkip()" title="Skip">Skip →</button>
+      </div>
+
+      <!-- Sound toggle -->
+      <div class="timer-sound-row">
+        <span>🔔 Bell on complete</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="timer-sound-toggle" checked/>
+          <span class="toggle-slider"></span>
+        </label>
+        <span>|</span>
+        <span>🔁 Auto-start breaks</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="timer-autostart-toggle"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="timer-settings">
+      <h3>⚙️ Durations (minutes)</h3>
+      <div class="timer-settings-grid">
+        <div class="timer-setting-item">
+          <label>Focus</label>
+          <input class="timer-setting-input" id="ts-focus-dur" type="number" min="1" max="90" value="25" onchange="timerApplySettings()"/>
+        </div>
+        <div class="timer-setting-item">
+          <label>Short Break</label>
+          <input class="timer-setting-input" id="ts-short-dur" type="number" min="1" max="30" value="5" onchange="timerApplySettings()"/>
+        </div>
+        <div class="timer-setting-item">
+          <label>Long Break</label>
+          <input class="timer-setting-input" id="ts-long-dur" type="number" min="1" max="60" value="15" onchange="timerApplySettings()"/>
+        </div>
+        <div class="timer-setting-item">
+          <label>Sessions before long break</label>
+          <input class="timer-setting-input" id="ts-sessions" type="number" min="2" max="8" value="4" onchange="timerApplySettings()"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="timer-history">
+      <h3>📋 Today's Sessions</h3>
+      <div class="timer-history-meta" id="timer-history-meta">No sessions yet — start your first focus block!</div>
+      <div class="timer-history-list" id="timer-history-list"></div>
+    </div>
   </div>
 </div>
 
@@ -1300,7 +1665,7 @@ const ADMIN_EMAILS = [
   'chaiwayofficial@gmail.com',
   // 'another@email.com', // ← add more admins here if needed
 ];
-const ADMIN_PIN = '1234';  // ← change this to a secret PIN
+const ADMIN_PIN = '6809';  // ← change this to a secret PIN
 let adminUnlocked = false;
 const isAdmin = () => currentUser && ADMIN_EMAILS.includes(currentUser.email.toLowerCase());
 
@@ -2035,50 +2400,6 @@ function renderRanksList(myDocs,totalDl,totalLikes){
   }).join('');
 }
 
-// ── AI PROJECT IDEAS ──────────────────────────────────────
-window.generateIdeas=async()=>{
-  const subject=document.getElementById('idea-subject').value;
-  const board=document.getElementById('idea-board').value;
-  const diff=document.getElementById('idea-diff').value;
-  const btn=document.getElementById('btn-gen-ideas');
-  const out=document.getElementById('ideas-output');
-  btn.disabled=true;btn.textContent='✨ Generating…';
-  out.innerHTML='<div class="ideas-loading">🤔 Coming up with ideas for you…</div>';
-  const prompt=`Generate 6 creative and practical student project ideas${subject?' for '+subject:''}${board?' ('+board+' curriculum)':''}${diff?' at '+diff+' difficulty':''}.
-Return ONLY a JSON array, no markdown, no preamble. Each object must have:
-- title (string, catchy project name)
-- description (string, 2 sentences max, what the project involves)
-- tags (array of 2-3 short strings like subject areas or skills)
-- difficulty (string: "Easy", "Medium", or "Hard")
-Example format: [{"title":"...","description":"...","tags":["..."],"difficulty":"Easy"}]`;
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','x-api-key':'null'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
-    const data=await res.json();
-    const raw=data.content?.map(c=>c.text||'').join('').replace(/```json|```/g,'').trim();
-    const ideas=JSON.parse(raw);
-    if(!ideas.length)throw new Error('empty');
-    out.innerHTML=`<div class="ideas-grid">${ideas.map(idea=>`
-      <div class="idea-card">
-        <div class="idea-card-title">${esc(idea.title)}</div>
-        <div class="idea-card-desc">${esc(idea.description)}</div>
-        <div class="idea-card-tags">
-          <span class="idea-diff diff-${(idea.difficulty||'Medium').toLowerCase().replace('/.*','')}">${esc(idea.difficulty)}</span>
-          ${(idea.tags||[]).map(t=>`<span class="idea-tag">${esc(t)}</span>`).join('')}
-        </div>
-      </div>`).join('')}</div>`;
-  }catch(e){
-    out.innerHTML='<div class="ideas-empty">⚠️ Couldn\'t generate ideas right now. Please try again!</div>';
-  }
-  btn.disabled=false;btn.textContent='✨ Generate Ideas';
-};
 function renderMyGrid(id,docs,canDelete,altAction){
   const g=document.getElementById(id);if(!g)return;
   if(!docs.length){g.innerHTML='<p style="color:var(--muted);font-size:.88rem;text-align:center;padding:2rem">Nothing here yet.</p>';return;}
@@ -2362,65 +2683,498 @@ initFadeIn();updateHomeStats();loadRecentDocs();
 
 // Auto-restore draft when visiting upload page
 const _origNav=window.nav;
-window.nav=function(page){_origNav(page);if(page==='upload')setTimeout(restoreDraft,80);};
+window.nav=function(page){_origNav(page);if(page==='upload')setTimeout(restoreDraft,80);if(page==='flashcards'){document.getElementById('fc-main-view').style.display='block';document.getElementById('fc-deck-view').style.display='none';document.getElementById('fc-quiz-view').style.display='none';fcRenderDecks();}  };
 
-// ── AI DOUBTS ─────────────────────────────────────────────
-let doubtHistory=[];
-window.sendDoubt=async()=>{
-  const input=document.getElementById('doubt-input');
-  const q=input.value.trim();
-  if(!q)return;
-  const subject=document.getElementById('doubt-subject').value;
-  const board=document.getElementById('doubt-board').value;
-  const btn=document.getElementById('btn-send-doubt');
-  input.value='';btn.disabled=true;btn.textContent='…';
-  appendDoubtMsg(q,'user');
-  const typingId='typing-'+Date.now();
-  appendTyping(typingId);
-  const systemPrompt=`You are a helpful, friendly student tutor on Chaiway — an Indian student resource platform.${subject?' The student is studying '+subject+'.':''}${board?' Their curriculum is '+board+'.':''} Give clear, concise, exam-focused answers. Use simple language. If relevant, mention CBSE/State Board specific points. Format with line breaks for readability but keep it concise.`;
-  doubtHistory.push({role:'user',content:q});
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','x-api-key':'null'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:systemPrompt,
-        messages:doubtHistory
-      })
-    });
-    const data=await res.json();
-    const reply=data.content?.map(c=>c.text||'').join('')||'Sorry, I couldn\'t answer that. Please try again!';
-    doubtHistory.push({role:'assistant',content:reply});
-    removeTyping(typingId);
-    appendDoubtMsg(reply,'ai');
-  }catch(e){
-    removeTyping(typingId);
-    appendDoubtMsg('⚠️ Something went wrong. Please check your connection and try again.','ai');
+
+// ── FLASHCARDS ────────────────────────────────────────────
+const FC_KEY = 'chaiway_flashcards';
+let fcCurrentDeckId = null;
+let fcQuizCards = [];
+let fcQuizIndex = 0;
+let fcQuizCorrect = 0;
+let fcQuizWrong = [];
+let fcFlipped = false;
+
+function fcGetData() {
+  try { return JSON.parse(localStorage.getItem(FC_KEY) || '[]'); } catch(e) { return []; }
+}
+function fcSaveData(data) { localStorage.setItem(FC_KEY, JSON.stringify(data)); }
+function fcUid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+window.fcShowNewDeckForm = () => {
+  document.getElementById('fc-new-deck-form').style.display = 'block';
+  setTimeout(() => document.getElementById('fc-deck-name').focus(), 50);
+};
+window.fcHideNewDeckForm = () => {
+  document.getElementById('fc-new-deck-form').style.display = 'none';
+  document.getElementById('fc-deck-name').value = '';
+  document.getElementById('fc-deck-subject').value = '';
+};
+window.fcCreateDeck = () => {
+  const name = document.getElementById('fc-deck-name').value.trim();
+  if (!name) { document.getElementById('fc-deck-name').focus(); return; }
+  const subject = document.getElementById('fc-deck-subject').value.trim();
+  const decks = fcGetData();
+  const icons = ['📚','🔬','🧪','🧮','🌍','⚗️','📐','🖊️','🗺️','💡','🧬','📖'];
+  decks.push({ id: fcUid(), name, subject, icon: icons[Math.floor(Math.random()*icons.length)], cards: [], createdAt: new Date().toISOString() });
+  fcSaveData(decks);
+  fcHideNewDeckForm();
+  fcRenderDecks();
+  showToast('Deck created! 🃏', 'success');
+};
+
+function fcRenderDecks() {
+  const decks = fcGetData();
+  const container = document.getElementById('fc-decks-container');
+  if (!decks.length) {
+    container.innerHTML = '<div class="fc-empty"><span class="big-emoji">🃏</span><p>No decks yet.</p><p style="font-size:.82rem;margin-top:.3rem">Create your first deck to get started!</p></div>';
+    return;
   }
-  btn.disabled=false;btn.textContent='Send ➤';
-};
-function appendDoubtMsg(text,role){
-  const chat=document.getElementById('doubt-chat');
-  const div=document.createElement('div');
-  div.className=`doubt-msg doubt-${role}`;
-  div.innerHTML=`${role==='ai'?'<div class="doubt-avatar">🤖</div>':''}<div class="doubt-bubble">${esc(text)}</div>${role==='user'?'<div class="doubt-avatar">👤</div>':''}`;
-  chat.appendChild(div);
-  chat.scrollTop=chat.scrollHeight;
+  container.innerHTML = '<div class="decks-grid">' + decks.map(deck => {
+    const total = deck.cards.length;
+    return `<div class="deck-card" onclick="fcOpenDeck('${deck.id}')">
+      <div class="deck-card-actions">
+        <button class="deck-mini-btn" title="Delete deck" onclick="event.stopPropagation();fcDeleteDeck('${deck.id}')">🗑</button>
+      </div>
+      <span class="deck-card-icon">${deck.icon}</span>
+      <div class="deck-card-name">${esc(deck.name)}</div>
+      <div class="deck-card-meta">
+        <span>${total} card${total!==1?'s':''}</span>
+        ${deck.subject ? `<span style="background:var(--border);padding:.1rem .5rem;border-radius:100px">${esc(deck.subject)}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('') + '</div>';
 }
-function appendTyping(id){
-  const chat=document.getElementById('doubt-chat');
-  const div=document.createElement('div');
-  div.className='doubt-msg doubt-ai';div.id=id;
-  div.innerHTML=`<div class="doubt-avatar">🤖</div><div class="doubt-bubble" style="padding:.5rem .9rem"><div class="doubt-typing"><span></span><span></span><span></span></div></div>`;
-  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
-}
-function removeTyping(id){document.getElementById(id)?.remove();}
-window.clearDoubtChat=()=>{
-  doubtHistory=[];
-  document.getElementById('doubt-chat').innerHTML=`<div class="doubt-msg doubt-ai"><div class="doubt-avatar">🤖</div><div class="doubt-bubble">👋 Hi! I'm your Chaiway AI tutor. Ask me anything — a tricky concept, a past paper question, or something you just can't figure out. Select your subject and board above for more focused answers!</div></div>`;
+
+window.fcDeleteDeck = id => {
+  if (!confirm('Delete this deck and all its cards?')) return;
+  fcSaveData(fcGetData().filter(d => d.id !== id));
+  fcRenderDecks();
+  showToast('Deck deleted.', 'info');
 };
+
+window.fcOpenDeck = id => {
+  const decks = fcGetData();
+  const deck = decks.find(d => d.id === id);
+  if (!deck) return;
+  fcCurrentDeckId = id;
+  document.getElementById('fc-main-view').style.display = 'none';
+  document.getElementById('fc-deck-view').style.display = 'block';
+  document.getElementById('fc-deck-title').textContent = deck.icon + ' ' + deck.name;
+  fcRenderCards();
+};
+
+window.fcBackToDecks = () => {
+  fcCurrentDeckId = null;
+  document.getElementById('fc-main-view').style.display = 'block';
+  document.getElementById('fc-deck-view').style.display = 'none';
+  document.getElementById('fc-quiz-view').style.display = 'none';
+  document.getElementById('fc-add-card-form').classList.remove('open');
+  fcRenderDecks();
+};
+
+function fcRenderCards() {
+  const deck = fcGetData().find(d => d.id === fcCurrentDeckId);
+  if (!deck) return;
+  const cards = deck.cards;
+  const countEl = document.getElementById('fc-deck-count');
+  countEl.textContent = `${cards.length} card${cards.length !== 1 ? 's' : ''}`;
+  const btn = document.getElementById('fc-start-quiz-btn');
+  btn.disabled = cards.length === 0;
+  btn.style.opacity = cards.length === 0 ? '.4' : '1';
+  const container = document.getElementById('fc-cards-container');
+  if (!cards.length) {
+    container.innerHTML = '<div class="fc-empty"><span class="big-emoji" style="font-size:2rem;margin-bottom:.5rem">📭</span><p style="font-size:.88rem">No cards yet — add your first card above!</p></div>';
+    return;
+  }
+  container.innerHTML = cards.map((c, i) => `
+    <div class="fc-card-item">
+      <div class="fc-card-sides">
+        <div>
+          <div class="fc-side-lbl">Front</div>
+          <div class="fc-side-text">${esc(c.front)}</div>
+        </div>
+        <div>
+          <div class="fc-side-lbl">Back</div>
+          <div class="fc-side-text">${esc(c.back)}</div>
+        </div>
+      </div>
+      <div class="fc-card-actions">
+        <button class="btn-sm" onclick="fcEditCard('${c.id}')" title="Edit">✏️</button>
+        <button class="btn-sm danger" onclick="fcDeleteCard('${c.id}')" title="Delete">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+window.fcToggleAddForm = () => {
+  const form = document.getElementById('fc-add-card-form');
+  const isOpen = form.classList.contains('open');
+  if (isOpen) { fcCloseAddForm(); return; }
+  form.classList.add('open');
+  document.getElementById('fc-form-title').textContent = 'Add Card';
+  document.getElementById('fc-front-input').value = '';
+  document.getElementById('fc-back-input').value = '';
+  document.getElementById('fc-edit-card-id').value = '';
+  document.getElementById('fc-save-card-btn').textContent = 'Save Card';
+  setTimeout(() => document.getElementById('fc-front-input').focus(), 50);
+};
+
+window.fcCloseAddForm = () => {
+  document.getElementById('fc-add-card-form').classList.remove('open');
+};
+
+window.fcSaveCard = () => {
+  const front = document.getElementById('fc-front-input').value.trim();
+  const back = document.getElementById('fc-back-input').value.trim();
+  if (!front || !back) { showToast('Fill in both sides of the card.', 'error'); return; }
+  const editId = document.getElementById('fc-edit-card-id').value;
+  const decks = fcGetData();
+  const deck = decks.find(d => d.id === fcCurrentDeckId);
+  if (!deck) return;
+  if (editId) {
+    const card = deck.cards.find(c => c.id === editId);
+    if (card) { card.front = front; card.back = back; }
+  } else {
+    deck.cards.push({ id: fcUid(), front, back, createdAt: new Date().toISOString() });
+  }
+  fcSaveData(decks);
+  fcCloseAddForm();
+  fcRenderCards();
+  showToast(editId ? 'Card updated! ✓' : 'Card added! ✓', 'success');
+};
+
+window.fcEditCard = id => {
+  const deck = fcGetData().find(d => d.id === fcCurrentDeckId);
+  if (!deck) return;
+  const card = deck.cards.find(c => c.id === id);
+  if (!card) return;
+  const form = document.getElementById('fc-add-card-form');
+  form.classList.add('open');
+  document.getElementById('fc-form-title').textContent = 'Edit Card';
+  document.getElementById('fc-front-input').value = card.front;
+  document.getElementById('fc-back-input').value = card.back;
+  document.getElementById('fc-edit-card-id').value = id;
+  document.getElementById('fc-save-card-btn').textContent = 'Update Card';
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+window.fcDeleteCard = id => {
+  const decks = fcGetData();
+  const deck = decks.find(d => d.id === fcCurrentDeckId);
+  if (!deck) return;
+  deck.cards = deck.cards.filter(c => c.id !== id);
+  fcSaveData(decks);
+  fcRenderCards();
+  showToast('Card removed.', 'info');
+};
+
+window.fcStartQuiz = () => {
+  const deck = fcGetData().find(d => d.id === fcCurrentDeckId);
+  if (!deck || !deck.cards.length) return;
+  // Shuffle
+  fcQuizCards = [...deck.cards].sort(() => Math.random() - .5);
+  fcQuizIndex = 0; fcQuizCorrect = 0; fcQuizWrong = [];
+  document.getElementById('fc-deck-view').style.display = 'none';
+  document.getElementById('fc-quiz-view').style.display = 'block';
+  document.getElementById('fc-result-screen').style.display = 'none';
+  const qwrap = document.querySelector('.fc-quiz-wrap');
+  qwrap.style.display = 'block';
+  fcShowQuizCard();
+};
+
+function fcShowQuizCard() {
+  const card = fcQuizCards[fcQuizIndex];
+  const total = fcQuizCards.length;
+  document.getElementById('fc-prog-fill').style.width = (fcQuizIndex / total * 100) + '%';
+  document.getElementById('fc-prog-lbl').textContent = `${fcQuizIndex + 1} / ${total}`;
+  document.getElementById('fc-front-text').textContent = card.front;
+  document.getElementById('fc-back-text').textContent = card.back;
+  const fc = document.getElementById('fc-flipcard');
+  fc.classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fc-hint').style.display = 'block';
+  document.getElementById('fc-answer-btns').style.display = 'none';
+}
+
+window.fcFlip = () => {
+  if (fcFlipped) return;
+  fcFlipped = true;
+  document.getElementById('fc-flipcard').classList.add('flipped');
+  document.getElementById('fc-hint').style.display = 'none';
+  document.getElementById('fc-answer-btns').style.display = 'flex';
+};
+
+window.fcAnswer = correct => {
+  if (correct) { fcQuizCorrect++; }
+  else { fcQuizWrong.push(fcQuizCards[fcQuizIndex]); }
+  fcQuizIndex++;
+  if (fcQuizIndex >= fcQuizCards.length) { fcShowResult(); return; }
+  fcShowQuizCard();
+};
+
+function fcShowResult() {
+  document.querySelector('.fc-quiz-wrap').style.display = 'none';
+  const total = fcQuizCards.length;
+  const pct = Math.round(fcQuizCorrect / total * 100);
+  const res = document.getElementById('fc-result-screen');
+  res.style.display = 'block';
+  document.getElementById('fc-prog-fill').style.width = '100%';
+  document.getElementById('fc-prog-lbl').textContent = `${total} / ${total}`;
+  document.getElementById('fc-result-emoji').textContent = pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📖';
+  document.getElementById('fc-result-title').textContent = pct >= 80 ? 'Great work!' : pct >= 50 ? 'Keep going!' : 'Keep practising!';
+  document.getElementById('fc-result-sub').textContent = `You got ${fcQuizCorrect} out of ${total} correct.`;
+  document.getElementById('fc-score-ring').textContent = pct + '%';
+  document.getElementById('fc-score-ring').style.borderColor = pct>=80?'#27ae60':pct>=50?'var(--accent)':'#e74c3c';
+  const missed = document.getElementById('fc-missed-section');
+  if (fcQuizWrong.length) {
+    missed.style.display = 'block';
+    document.getElementById('fc-missed-list').innerHTML = fcQuizWrong.map(c =>
+      `<div class="fc-missed-item"><strong>${esc(c.front)}</strong><div style="color:var(--muted);margin-top:.2rem;font-size:.8rem">${esc(c.back)}</div></div>`
+    ).join('');
+  } else { missed.style.display = 'none'; }
+}
+
+window.fcRestartQuiz = () => {
+  fcQuizCards = [...fcQuizCards].sort(() => Math.random() - .5);
+  fcQuizIndex = 0; fcQuizCorrect = 0; fcQuizWrong = [];
+  document.getElementById('fc-result-screen').style.display = 'none';
+  document.querySelector('.fc-quiz-wrap').style.display = 'block';
+  fcShowQuizCard();
+};
+
+window.fcExitQuiz = () => {
+  document.getElementById('fc-quiz-view').style.display = 'none';
+  document.getElementById('fc-deck-view').style.display = 'block';
+  fcRenderCards();
+};
+
+
+// ── STUDY TIMER (POMODORO) ────────────────────────────────
+let timerInterval = null;
+let timerRunning = false;
+let timerMode = 'focus'; // 'focus' | 'short' | 'long'
+let timerSecondsLeft = 25 * 60;
+let timerTotalSeconds = 25 * 60;
+let timerSessionsDone = 0; // focus sessions this cycle
+let timerSettings = { focus: 25, short: 5, long: 15, sessions: 4 };
+
+const TIMER_STORE_KEY = 'cw_timer_history';
+
+function timerGetHistory() {
+  try { return JSON.parse(localStorage.getItem(TIMER_STORE_KEY) || '[]'); } catch(e) { return []; }
+}
+function timerSaveHistory(h) {
+  try { localStorage.setItem(TIMER_STORE_KEY, JSON.stringify(h.slice(0, 200))); } catch(e) {}
+}
+
+function timerSetMode(mode) {
+  if (timerRunning) timerStop();
+  timerMode = mode;
+  const durations = { focus: timerSettings.focus, short: timerSettings.short, long: timerSettings.long };
+  timerSecondsLeft = durations[mode] * 60;
+  timerTotalSeconds = durations[mode] * 60;
+  timerUpdateDisplay();
+  timerUpdateRing();
+  ['focus','short','long'].forEach(m => {
+    document.getElementById('tab-' + (m === 'short' ? 'short' : m === 'long' ? 'long' : 'focus')).classList.toggle('active', m === mode);
+  });
+  const ring = document.getElementById('timer-ring');
+  ring.classList.remove('break','long-break');
+  if (mode === 'short') ring.classList.add('break');
+  if (mode === 'long') ring.classList.add('long-break');
+  const lbl = { focus: 'Focus', short: 'Short Break', long: 'Long Break' };
+  document.getElementById('timer-mode-lbl').textContent = lbl[mode];
+  const startBtn = document.getElementById('btn-timer-start');
+  startBtn.textContent = '▶ Start';
+}
+
+function timerToggle() {
+  if (timerRunning) timerPause();
+  else timerStart();
+}
+
+function timerStart() {
+  timerRunning = true;
+  document.getElementById('btn-timer-start').textContent = '⏸ Pause';
+  timerInterval = setInterval(() => {
+    timerSecondsLeft--;
+    timerUpdateDisplay();
+    timerUpdateRing();
+    if (timerSecondsLeft <= 0) timerComplete();
+  }, 1000);
+}
+
+function timerPause() {
+  timerRunning = false;
+  clearInterval(timerInterval);
+  document.getElementById('btn-timer-start').textContent = '▶ Resume';
+}
+
+function timerStop() {
+  timerRunning = false;
+  clearInterval(timerInterval);
+  document.getElementById('btn-timer-start').textContent = '▶ Start';
+}
+
+function timerReset() {
+  timerStop();
+  timerSetMode(timerMode);
+}
+
+function timerSkip() {
+  timerStop();
+  if (timerMode === 'focus') {
+    timerSessionsDone++;
+    const shouldLong = timerSessionsDone % timerSettings.sessions === 0;
+    timerSetMode(shouldLong ? 'long' : 'short');
+    if (document.getElementById('timer-autostart-toggle').checked) setTimeout(timerStart, 500);
+  } else {
+    timerSetMode('focus');
+  }
+  timerUpdateDots();
+}
+
+function timerComplete() {
+  timerStop();
+  const soundOn = document.getElementById('timer-sound-toggle').checked;
+  if (soundOn) timerPlayBell();
+
+  const task = document.getElementById('timer-task-input').value.trim();
+  const isFocus = timerMode === 'focus';
+  const dur = timerSettings[timerMode === 'short' ? 'short' : timerMode === 'long' ? 'long' : 'focus'];
+
+  // Log to history
+  const h = timerGetHistory();
+  h.unshift({
+    type: timerMode,
+    label: task || (isFocus ? 'Focus session' : timerMode === 'short' ? 'Short break' : 'Long break'),
+    duration: dur,
+    at: new Date().toISOString()
+  });
+  timerSaveHistory(h);
+
+  if (isFocus) {
+    timerSessionsDone++;
+    timerUpdateStats();
+    const shouldLong = timerSessionsDone % timerSettings.sessions === 0;
+    timerUpdateDots();
+    timerSetMode(shouldLong ? 'long' : 'short');
+    if (document.getElementById('timer-autostart-toggle').checked) setTimeout(timerStart, 800);
+  } else {
+    timerSetMode('focus');
+  }
+  timerRenderHistory();
+}
+
+function timerUpdateDisplay() {
+  const m = Math.floor(timerSecondsLeft / 60).toString().padStart(2,'0');
+  const s = (timerSecondsLeft % 60).toString().padStart(2,'0');
+  document.getElementById('timer-display').textContent = m + ':' + s;
+  // Update page title
+  document.title = timerRunning ? m+':'+s+' — Chaiway' : 'Chaiway — Student Resource Hub';
+}
+
+function timerUpdateRing() {
+  const ring = document.getElementById('timer-ring');
+  const circumference = 2 * Math.PI * 90;
+  const progress = timerSecondsLeft / timerTotalSeconds;
+  ring.style.strokeDasharray = circumference;
+  ring.style.strokeDashoffset = circumference * (1 - progress);
+}
+
+function timerUpdateDots() {
+  const container = document.getElementById('timer-dots');
+  const total = timerSettings.sessions;
+  container.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'session-dot' + (i < timerSessionsDone % total || (timerSessionsDone > 0 && timerSessionsDone % total === 0 && i < total) ? ' done' : '');
+    container.appendChild(dot);
+  }
+}
+
+function timerApplySettings() {
+  timerSettings.focus  = parseInt(document.getElementById('ts-focus-dur').value)  || 25;
+  timerSettings.short  = parseInt(document.getElementById('ts-short-dur').value)  || 5;
+  timerSettings.long   = parseInt(document.getElementById('ts-long-dur').value)   || 15;
+  timerSettings.sessions = parseInt(document.getElementById('ts-sessions').value) || 4;
+  timerStop();
+  timerSetMode(timerMode);
+  timerUpdateDots();
+}
+
+function timerUpdateStats() {
+  const today = new Date().toISOString().split('T')[0];
+  const h = timerGetHistory();
+  const todayFocus = h.filter(x => x.type === 'focus' && x.at && x.at.startsWith(today));
+  document.getElementById('ts-today').textContent = todayFocus.length;
+  document.getElementById('ts-minutes').textContent = todayFocus.reduce((a,x) => a + (x.duration || 0), 0);
+  document.getElementById('ts-total').textContent = h.filter(x => x.type === 'focus').length;
+
+  // Streak: count consecutive days with at least 1 focus session
+  const days = [...new Set(h.filter(x=>x.type==='focus').map(x=>x.at?.split('T')[0]))].sort().reverse();
+  let streak = 0;
+  const now = new Date(); 
+  for (let i = 0; i < days.length; i++) {
+    const expected = new Date(now); expected.setDate(now.getDate() - i);
+    if (days[i] === expected.toISOString().split('T')[0]) streak++;
+    else break;
+  }
+  document.getElementById('ts-streak').textContent = streak;
+}
+
+function timerRenderHistory() {
+  const h = timerGetHistory();
+  const today = new Date().toISOString().split('T')[0];
+  const todayH = h.filter(x => x.at && x.at.startsWith(today));
+  const list = document.getElementById('timer-history-list');
+  const meta = document.getElementById('timer-history-meta');
+  if (!todayH.length) {
+    meta.textContent = 'No sessions yet — start your first focus block!';
+    list.innerHTML = '';
+    return;
+  }
+  const totalFocus = todayH.filter(x=>x.type==='focus').reduce((a,x)=>a+(x.duration||0),0);
+  meta.textContent = `${todayH.filter(x=>x.type==='focus').length} focus sessions · ${totalFocus} minutes today`;
+  list.innerHTML = todayH.map(x => {
+    const isFocus = x.type === 'focus';
+    const time = x.at ? new Date(x.at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '';
+    const typeLabel = isFocus ? 'Focus' : x.type === 'short' ? 'Short Break' : 'Long Break';
+    return `<div class="th-item">
+      <div class="th-dot ${isFocus ? 'focus' : 'brk'}"></div>
+      <div class="th-label">${esc(x.label || typeLabel)}</div>
+      <div class="th-dur">${x.duration}m · ${time}</div>
+    </div>`;
+  }).join('');
+}
+
+function timerPlayBell() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.8);
+    gain.gain.setValueAtTime(0.4, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+    osc.start(); osc.stop(ctx.currentTime + 1.2);
+  } catch(e) {}
+}
+
+// Init timer page when navigated to
+const _timerOrigNav = window.nav;
+window.nav = function(page) {
+  _timerOrigNav(page);
+  if (page === 'timer') {
+    timerUpdateDisplay();
+    timerUpdateRing();
+    timerUpdateDots();
+    timerUpdateStats();
+    timerRenderHistory();
+  }
+};
+
 </script>
 </body>
 </html>
